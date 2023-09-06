@@ -5,7 +5,7 @@ import Container from "./components/layout/Container";
 import MainContent from "./components/layout/MainContent";
 import Title from "./components/global/Title";
 import Icon from "./components/global/Icon";
-import logo from "./assets/app-icon.svg";
+
 import { BrowserRouter as Router, Link, NavLink } from "react-router-dom";
 import SiteRoutes from "./routes/SiteRoutes";
 
@@ -13,8 +13,6 @@ const App = () => {
   return (
     <AppWrapper>
       <Container>
-       
-
         <StateProvider>
           <Router>
             <SiteRoutes />
