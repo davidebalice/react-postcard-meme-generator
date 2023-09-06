@@ -1,0 +1,50 @@
+import React, { useContext, useEffect } from 'react';
+import { MemeContext } from '../../../context/MemeContext';
+import ImageWrapper from './ImageWrapper';
+import ImageLabel from './ImageLabel';
+import ImageInput from './ImageInput';
+import ImageCaption from './ImageCaption';
+import ActiveImage from './ActiveImage';
+import NoImage from './NoImage';
+
+const UpdateImage = () => {
+    const meme = useContext(MemeContext);
+
+    useEffect(() => {
+        const firstInput = document.getElementById('text-top');
+        firstInput.focus();
+        firstInput.select();
+    }, [meme.state.imageSelected]);
+
+    const handleLocalImage = e => {
+        const img = e.target.files[0];
+        const newImage = {
+            name: img.name,
+            size: img.size,
+            path: URL.createObjectURL(img),
+        };
+
+        if (!meme.state.imageSelected) {
+            meme.dispatch({ type: 'IMAGE_SELECTED', payload: newImage });
+        }
+    };
+
+    let label, caption;
+    if (meme.state.imageSelected) {
+        label = <ActiveImage />;
+        caption = <ImageCaption />;
+    } else {
+        label = <NoImage>Upload an image from your computer</NoImage>;
+    }
+
+    return (
+        <ImageWrapper>
+            <ImageLabel active={meme.state.imageSelected !== null}>
+                {label}
+            </ImageLabel>
+            <ImageInput onChange={handleLocalImage} />
+            {caption}
+        </ImageWrapper>
+    );
+};
+export default UpdateImage;
