@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-// Styled components
 const Btn = styled.button`
     appearance: none;
     display: inline-block;
@@ -14,12 +13,10 @@ const Btn = styled.button`
     outline: none;
     cursor: pointer;
     transition: background-color 0.4s, color 0.4s, opacity 0.4s;
-    /* Modifica singola proprietà */
     background: ${props =>
         props.primary
             ? props.theme.colors.primary
             : props.theme.colors.default};
-    /* Modifica molteplici proprietà */
     ${({ margin }) =>
         margin &&
         css`
@@ -42,14 +39,11 @@ const Btn = styled.button`
     }
 `;
 
-// Override a component (your own or 3rd party like materia-ui)
 const ShadowButton = styled(Btn)`
     box-shadow: 0 4px 7px rgba(0, 0, 0, 0.25);
 `;
 
-// Main Component
 const Button = ({ primary, margin, children, handleClick, isDisabled }) => {
-    // Render
     return (
         <ShadowButton
             primary={primary}

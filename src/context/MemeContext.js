@@ -1,18 +1,18 @@
 import React, { createContext, useReducer } from "react";
 
 const initialState = {
-  text1: "Text 1",
+  text1: "Lorem ipsum dolor sit amet",
   top1: 5,
   left1: 2,
-  size1: 2,
-  text2: "Text 2",
+  size1: 1.4,
+  text2: "Consectetur adipiscing elit",
   top2: 20,
   left2: 2,
-  size2: 2,
-  text3: "Text 3",
+  size2: 1.4,
+  text3: "Sed do eiusmod tempor incididunt",
   top3: 35,
   left3: 2,
-  size3: 2,
+  size3: 1.4,
   textOutside: false,
   imageSelected: null,
 };

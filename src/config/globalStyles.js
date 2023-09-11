@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import 'typeface-open-sans';
+import bg from "../assets/images/bg.jpg";
 
 const GlobalStyle = createGlobalStyle`
     *,
@@ -10,15 +11,29 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
         font-family: ${({ theme }) => theme.typography.mainFont};
         font-size: ${({ theme }) => theme.typography.baseFont};
+        text-decoration:none;
     }
 
     body {
         color: ${({ theme }) => theme.typography.colorFont};
-        background: ${({ theme }) => theme.typography.backColor}
+        background-image: url('${bg}');
+        background-size:cover;
+    }
+
+    a {
+        text-decoration:none;
     }
 
     img{
         max-width: 100%;
+    }
+
+    .textCol{
+        width:33% !important
+    }
+
+    .bold{
+        font-weight:bold
     }
 `;
 

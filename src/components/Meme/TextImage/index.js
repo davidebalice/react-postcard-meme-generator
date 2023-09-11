@@ -1,16 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { MemeContext } from "../../../context/MemeContext";
-import TextWrapper from "./TextWrapper";
 import TextLegenda from "./TextLegenda";
 import Title from "../../global/Title";
 import WrapInput from "../../global/form/WrapInput";
 import Label from "../../global/form/Label";
-import Input from "../../global/form/Input";
+import Textarea from "../../global/form/Textarea";
 import Range from "../../global/form/Range";
 import Switch from "../../global/form/Switch";
 
 const TextImage = () => {
   const meme = useContext(MemeContext);
+  const [selectedColor1, setSelectedColor1] = useState("#ffffff"); // Inizializza con un colore predefinito
+
+  const handleColorChange1 = (color) => {
+    setSelectedColor1(color.hex); // Aggiorna lo stato con il colore selezionato
+  };
 
   const handleText1 = (e) => {
     meme.dispatch({ type: "UPDATE_TEXT1", payload: e.target.value });
@@ -22,6 +26,11 @@ const TextImage = () => {
 
   const handleText3 = (e) => {
     meme.dispatch({ type: "UPDATE_TEXT3", payload: e.target.value });
+  };
+
+  const handleColor1 = (e) => {
+    meme.dispatch({ type: "SET_BGCOLOR", payload: e.target.value });
+    meme.dispatch({ type: "SET_BG_TYPE", payload: "linear" });
   };
 
   const handleTextPos = (e, pos) => {
@@ -45,28 +54,28 @@ const TextImage = () => {
       meme.dispatch({ type: "UPDATE_SIZE1", payload: e.target.value });
     } else if (pos === "size2") {
       meme.dispatch({ type: "UPDATE_SIZE2", payload: e.target.value });
+    } else if (pos === "size3") {
+      meme.dispatch({ type: "UPDATE_SIZE3", payload: e.target.value });
     }
   };
 
   const handleTextOutside = (e) => {
-    console.log(e.target.value);
     meme.dispatch({ type: "TEXT_OUTSIDE" });
   };
 
-  // Render
   return (
-    <TextWrapper className={meme.state.imageSelected ? "active" : ""}>
-      <Title as="h3" fsize="1.4" margin="0 0 1rem">
-        Add text to image, then generate a Meme
+    <section style={{ background: "#fff",padding:'18px' }}>
+      <Title as="h4" fsize="1" margin="0 0 2rem">
+        Add texts to image, regulate position and size, then generate a Meme
       </Title>
 
       <WrapInput>
-        <Label primary htmlFor="text-top">
-          Top text
+        <Label primary htmlFor="text1" className="bold">
+          Text 1
         </Label>
-        <Input
-          intype="text"
-          id="text-top"
+        <Textarea
+          intype="textarea"
+          id="text1"
           onChange={handleText1}
           value={meme.state.text1}
           disabled={!meme.state.imageSelected}
@@ -74,20 +83,30 @@ const TextImage = () => {
       </WrapInput>
 
       <WrapInput flex>
-        <div className={meme.state.textOutside ? "inactive" : ""}>
-          <Label htmlFor="pos-top">
-            Text position <span>[ {meme.state.top1} ]</span>
+        <div
+          className={meme.state.textOutside ? "inactive textCol" : "textCol"}
+        >
+          <Label htmlFor="top1">
+            Position top <span>[ {meme.state.top1} ]</span>
           </Label>
           <Range
-            id="pos-top"
+            id="top1"
             min="0"
             max="100"
             value={meme.state.top1}
             disabled={!meme.state.imageSelected || meme.state.textOutside}
             onChange={(e) => handleTextPos(e, "top1")}
           />
+        </div>
+
+        <div
+          className={meme.state.textOutside ? "inactive textCol" : "textCol"}
+        >
+          <Label htmlFor="top1">
+            Position left <span>[ {meme.state.left1} ]</span>
+          </Label>
           <Range
-            id="pos-left"
+            id="left1"
             min="-100"
             max="100"
             value={meme.state.left1}
@@ -95,14 +114,17 @@ const TextImage = () => {
             onChange={(e) => handleTextPos(e, "left1")}
           />
         </div>
-        <div>
-          <Label htmlFor="size-top">
+
+        <div
+          className={meme.state.textOutside ? "inactive textCol" : "textCol"}
+        >
+          <Label htmlFor="size1">
             Text size <span>[ {meme.state.size1} ]</span>
           </Label>
           <Range
-            id="size-top"
-            min="1"
-            max="4"
+            id="size1"
+            min="0.5"
+            max="6"
             step="0.1"
             value={meme.state.size1}
             disabled={!meme.state.imageSelected}
@@ -111,13 +133,17 @@ const TextImage = () => {
         </div>
       </WrapInput>
 
+      <WrapInput flex>
+        <input onChange={(e) => handleColor1(e)} type="color" value="#333" />
+      </WrapInput>
+
       <WrapInput>
-        <Label primary htmlFor="text-bottom">
+        <Label primary htmlFor="text2" className="bold">
           Text 2
         </Label>
-        <Input
-          intype="text"
-          id="text-bottom"
+        <Textarea
+          intype="textarea"
+          id="text2"
           onChange={handleText2}
           value={meme.state.text2}
           disabled={!meme.state.imageSelected}
@@ -125,20 +151,30 @@ const TextImage = () => {
       </WrapInput>
 
       <WrapInput flex>
-        <div className={meme.state.textOutside ? "inactive" : ""}>
-          <Label htmlFor="pos-bottom">
-            Text position <span>[ {meme.state.top2} ]</span>
+        <div
+          className={meme.state.textOutside ? "inactive textCol" : "textCol"}
+        >
+          <Label htmlFor="top2">
+            Position top <span>[ {meme.state.top2} ]</span>
           </Label>
           <Range
-            id="pos-bottom"
+            id="top2"
             min="0"
             max="100"
             value={meme.state.top2}
             disabled={!meme.state.imageSelected || meme.state.textOutside}
             onChange={(e) => handleTextPos(e, "top2")}
           />
+        </div>
+
+        <div
+          className={meme.state.textOutside ? "inactive textCol" : "textCol"}
+        >
+          <Label htmlFor="top2">
+            Position left <span>[ {meme.state.top2} ]</span>
+          </Label>
           <Range
-            id="pos-left2"
+            id="left2"
             min="-100"
             max="100"
             value={meme.state.left2}
@@ -147,18 +183,84 @@ const TextImage = () => {
           />
         </div>
 
-        <div>
-          <Label htmlFor="size-bottom">
+        <div
+          className={meme.state.textOutside ? "inactive textCol" : "textCol"}
+        >
+          <Label htmlFor="size2">
             Text size <span>[ {meme.state.size2} ]</span>
           </Label>
           <Range
-            id="size-bottom"
-            min="1"
-            max="4"
+            id="size2"
+            min="0.5"
+            max="6"
             step="0.1"
             value={meme.state.size2}
             disabled={!meme.state.imageSelected}
             onChange={(e) => handleTextSize(e, "size2")}
+          />
+        </div>
+      </WrapInput>
+
+      <WrapInput>
+        <Label primary htmlFor="text3" className="bold">
+          Text 3
+        </Label>
+        <Textarea
+          intype="textarea"
+          id="text3"
+          onChange={handleText3}
+          value={meme.state.text3}
+          disabled={!meme.state.imageSelected}
+        />
+      </WrapInput>
+
+      <WrapInput flex>
+        <div
+          className={meme.state.textOutside ? "inactive textCol" : "textCol"}
+        >
+          <Label htmlFor="top3">
+            Position top <span>[ {meme.state.top3} ]</span>
+          </Label>
+          <Range
+            id="top3"
+            min="0"
+            max="100"
+            value={meme.state.top3}
+            disabled={!meme.state.imageSelected || meme.state.textOutside}
+            onChange={(e) => handleTextPos(e, "top3")}
+          />
+        </div>
+
+        <div
+          className={meme.state.textOutside ? "inactive textCol" : "textCol"}
+        >
+          <Label htmlFor="top3">
+            Position left <span>[ {meme.state.top3} ]</span>
+          </Label>
+          <Range
+            id="left3"
+            min="-100"
+            max="100"
+            value={meme.state.left3}
+            disabled={!meme.state.imageSelected || meme.state.textOutside}
+            onChange={(e) => handleTextPos(e, "left3")}
+          />
+        </div>
+
+        <div
+          className={meme.state.textOutside ? "inactive textCol" : "textCol"}
+        >
+          <Label htmlFor="size3">
+            Text size <span>[ {meme.state.size3} ]</span>
+          </Label>
+          <Range
+            id="size3"
+            min="0.5"
+            max="6"
+            step="0.1"
+            value={meme.state.size3}
+            disabled={!meme.state.imageSelected}
+            onChange={(e) => handleTextSize(e, "size3")}
           />
         </div>
       </WrapInput>
@@ -174,7 +276,7 @@ const TextImage = () => {
       </WrapInput>
 
       <TextLegenda>* Both of the above texts are optional.</TextLegenda>
-    </TextWrapper>
+    </section>
   );
 };
 

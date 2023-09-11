@@ -35,6 +35,7 @@ export const GenerateImage = () => {
   if (image) {
     memeImage = <Meme path={image} close={closeMeme} />;
   }
+  
   return (
     <Wrapper>
       <Button

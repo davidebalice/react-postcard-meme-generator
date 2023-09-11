@@ -6,6 +6,8 @@ const WrapInput = styled.div`
         props.flex &&
         css`
             display: flex;
+            flex: 1; 
+            margin-bottom:50px;
             & > div {
                 margin-right: 1rem;
                 transition: opacity 0.4s;

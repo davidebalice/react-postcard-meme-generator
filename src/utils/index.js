@@ -1,13 +1,8 @@
-/****************************************************************
- * App Utilities functions
- ****************************************************************/
-
 /**
  * Convert from bytes to KB, MB or GB
  * @param {number} bytes number to be converted from bytes to
  */
 function formatSizeUnits(bytes) {
-    // Check if number
     if (typeof bytes !== 'number') {
         return bytes;
     }

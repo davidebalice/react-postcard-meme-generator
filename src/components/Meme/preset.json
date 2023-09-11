@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "text1": "Lorem ipsum dolor sit amet",
+    "top1": 18,
+    "left1": 27,
+    "size1": 0.9,
+    "text2": "Consectetur adipiscing elit",
+    "top2": 20,
+    "left2": 2,
+    "size2": 0.9,
+    "text3": "",
+    "top3": 35,
+    "left3": 2,
+    "size3": 1.4,
+    "textOutside": false,
+    "imageSelected": null
+  },
+  {
+    "id": 2,
+    "text1": "Lorem ipsum dolor sit amet",
+    "top1": 5,
+    "left1": 2,
+    "size1": 1.4,
+    "text2": "Consectetur adipiscing elit",
+    "top2": 20,
+    "left2": 2,
+    "size2": 1.4,
+    "text3": "Sed do eiusmod tempor incididunt",
+    "top3": 35,
+    "left3": 2,
+    "size3": 1.4,
+    "textOutside": false,
+    "imageSelected": null
+  }
+]
