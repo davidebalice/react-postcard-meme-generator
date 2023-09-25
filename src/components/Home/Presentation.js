@@ -6,6 +6,7 @@ import github from "../../assets/images/github2_white.png";
 const StyledImg = styled.img`
   width: ${(props) => `${props.width}%`};
   max-width: 180px;
+  min-width: 100px;
   margin-bottom: 20px;
 `;
 
@@ -43,7 +44,13 @@ const Presentation = () => {
       View project on GitHub
       <br />
       <br />
-      <StyledImg src={github} width={10} />
+      <a
+        href="https://github.com/davidebalice/react-postcard-meme-generator"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <StyledImg src={github} width={6} />
+      </a>
     </StyledPresentation>
   );
 };

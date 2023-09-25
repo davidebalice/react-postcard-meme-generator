@@ -61,7 +61,7 @@ const StyledText = styled.p`
   margin: 0 auto;
   text-decoration: none;
   height: 150px;
-  font-size: 14px;
+  font-size: 15px;
 `;
 
 const StyledTitle = styled.p`
@@ -96,7 +96,7 @@ const Home = () => {
               </StyledContainerImg>
               <StyledText>
                 Upload a photo or select one of the presets, manage the
-                position, size and color of the texts, generate your meme
+                position, size and color of texts, generate your meme
               </StyledText>
               <StyledTitle>Meme generator</StyledTitle>
             </Card>
@@ -113,7 +113,7 @@ const Home = () => {
               </StyledContainerImg>
               <StyledText>
                 Upload your photo or choose one of the presets, manage the
-                position, size and color of the texts both on the front and on
+                position, size and color of texts. both on the front and on
                 the retro, generate your postcard
               </StyledText>
               <StyledTitle>Postcard generator</StyledTitle>

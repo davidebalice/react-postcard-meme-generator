@@ -17,9 +17,12 @@ const Text = styled.pre`
   padding: ${(props) => (props.outside ? "0.25rem 1rem" : "0 1rem")};
   text-align: center;
   line-height: 1.2;
+  color: ${(props) => props.color};
   font-weight: ${({ theme }) => theme.typography.bold};
   font-size: ${(props) => props.fsize}em;
-  text-shadow: 0px 0px 5px #fff;
+  text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff,
+    -1px -1px 0 #fff;
+
   ${(props) =>
     !props.outside &&
     props.pos === "top" &&
@@ -39,43 +42,38 @@ const Image = styled.img.attrs(({ path, altimg }) => ({
 
 const ActiveImage = () => {
   const meme = useContext(MemeContext);
+  const { useText } = meme.state;
+
+  const textFields = [];
+
+  for (let i = 1; i <= useText; i++) {
+    textFields.push(`text${i}`);
+  }
+
+  const textComponents = textFields.map(
+    (textField, index) =>
+      meme.state.text[textField] && (
+        <>
+          {meme.state.text[textField] && (
+            <Text
+              key={index}
+              pos="top"
+              topPlace={meme.state.top[`top${index + 1}`]}
+              leftPlace={meme.state.left[`left${index + 1}`]}
+              color={meme.state.color[`color${index + 1}`]}
+              fsize={meme.state.size[`size${index + 1}`]}
+              outside={meme.state.textOutside}
+            >
+              {meme.state.text[textField]}
+            </Text>
+          )}
+        </>
+      )
+  );
 
   return (
     <Wrapper>
-      {meme.state.text1 && (
-        <Text
-          pos="top"
-          topPlace={meme.state.top1}
-          leftPlace={meme.state.left1}
-          fsize={meme.state.size1}
-          outside={meme.state.textOutside}
-        >
-          {meme.state.text1}
-        </Text>
-      )}
-
-      {meme.state.text2 && (
-        <Text
-          pos="top"
-          topPlace={meme.state.top2}
-          leftPlace={meme.state.left2}
-          fsize={meme.state.size2}
-          outside={meme.state.textOutside}
-        >
-          {meme.state.text2}
-        </Text>
-      )}
-      {meme.state.text3 && (
-        <Text
-          pos="top"
-          topPlace={meme.state.top3}
-          leftPlace={meme.state.left3}
-          fsize={meme.state.size3}
-          outside={meme.state.textOutside}
-        >
-          {meme.state.text3}
-        </Text>
-      )}
+      {textComponents}
       <Image
         path={meme.state.imageSelected.path}
         altimg={meme.state.imageSelected.name}

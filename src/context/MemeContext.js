@@ -1,18 +1,63 @@
 import React, { createContext, useReducer } from "react";
 
 const initialState = {
-  text1: "Lorem ipsum dolor sit amet",
-  top1: 5,
-  left1: 2,
-  size1: 1.4,
-  text2: "Consectetur adipiscing elit",
-  top2: 20,
-  left2: 2,
-  size2: 1.4,
-  text3: "Sed do eiusmod tempor incididunt",
-  top3: 35,
-  left3: 2,
-  size3: 1.4,
+  useText: 2,
+  text: {
+    text1: "Lorem ipsum dolor sit amet",
+    text2: "Consectetur adipiscing elit",
+    text3: "Sed do eiusmod tempor incididunt",
+    text4: "Sed do eiusmod tempor incididunt",
+    text5: "Sed do eiusmod tempor incididunt",
+    text6: "Sed do eiusmod tempor incididunt",
+  },
+  top: {
+    top1: 5,
+    top2: 20,
+    top3: 35,
+    top4: 50,
+    top5: 65,
+    top6: 70,
+  },
+  left: {
+    left1: 2,
+    left2: 2,
+    left3: 2,
+    left4: 2,
+    left5: 2,
+    left6: 2,
+  },
+  size: {
+    size1: 1.4,
+    size2: 1.4,
+    size3: 1.4,
+    size4: 1.4,
+    size5: 1.4,
+    size6: 1.4,
+  },
+  color: {
+    color1: "#333333",
+    color2: "#333333",
+    color3: "#333333",
+    color4: "#333333",
+    color5: "#333333",
+    color6: "#333333",
+  },
+  border: {
+    border1: 0,
+    border2: 0,
+    border3: 0,
+    border4: 0,
+    border5: 0,
+    border6: 0,
+  },
+  borderColor: {
+    borderColor1: "#ffffff",
+    borderColor2: "#ffffff",
+    borderColor3: "#ffffff",
+    borderColor4: "#ffffff",
+    borderColor5: "#ffffff",
+    borderColor6: "#ffffff",
+  },
   textOutside: false,
   imageSelected: null,
 };
@@ -23,65 +68,50 @@ const { Provider } = MemeContext;
 const StateProvider = ({ children }) => {
   const [state, dispatch] = useReducer((state, action) => {
     switch (action.type) {
-      case "UPDATE_TEXT1":
+      case "USE_TEXT":
         return {
           ...state,
-          text1: action.payload,
+          useText: action.payload,
         };
-      case "UPDATE_TEXT2":
+      case "UPDATE_TEXT":
         return {
           ...state,
-          text2: action.payload,
+          text: {
+            ...state.text,
+            [action.key]: action.payload,
+          },
         };
-      case "UPDATE_TEXT3":
+      case "UPDATE_SIZE":
         return {
           ...state,
-          text3: action.payload,
+          size: {
+            ...state.size,
+            [action.key]: action.payload,
+          },
         };
-      case "UPDATE_TOP1":
+      case "UPDATE_TOP":
         return {
           ...state,
-          top1: action.payload,
+          top: {
+            ...state.top,
+            [action.key]: action.payload,
+          },
         };
-      case "UPDATE_TOP2":
+      case "UPDATE_LEFT":
         return {
           ...state,
-          top2: action.payload,
+          left: {
+            ...state.left,
+            [action.key]: action.payload,
+          },
         };
-      case "UPDATE_TOP3":
+      case "UPDATE_COLOR":
         return {
           ...state,
-          top3: action.payload,
-        };
-      case "UPDATE_SIZE1":
-        return {
-          ...state,
-          size1: action.payload,
-        };
-      case "UPDATE_SIZE2":
-        return {
-          ...state,
-          size2: action.payload,
-        };
-      case "UPDATE_SIZE3":
-        return {
-          ...state,
-          size3: action.payload,
-        };
-      case "UPDATE_LEFT1":
-        return {
-          ...state,
-          left1: action.payload,
-        };
-      case "UPDATE_LEFT2":
-        return {
-          ...state,
-          left2: action.payload,
-        };
-      case "UPDATE_LEFT3":
-        return {
-          ...state,
-          left3: action.payload,
+          color: {
+            ...state.color,
+            [action.key]: action.payload,
+          },
         };
       case "TEXT_OUTSIDE":
         return {

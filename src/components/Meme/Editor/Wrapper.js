@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const TextWrapper = styled.section`
+const Wrapper = styled.section`
     width: 50%;
     opacity: 0.5;
     transition: opacity 0.4s;
@@ -13,4 +13,4 @@ const TextWrapper = styled.section`
     }
 `;
 
-export default TextWrapper;
+export default Wrapper;

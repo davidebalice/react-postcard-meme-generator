@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import MainContent from "../components/layout/MainContent";
-import UploadImage from "../components/Meme/UploadImage";
-import TextImage from "../components/Meme/TextImage";
-import TextWrapper from "../components/Meme/TextImage/TextWrapper";
-import Preset from "../components/Meme/UploadImage/Preset";
-import ButtonUpload from "../components/Meme/UploadImage/ButtonUpload";
+import Image from "../components/Meme/Image";
+import Editor from "../components/Meme/Editor";
+import Wrapper from "../components/Meme/Editor/Wrapper";
+import Preset from "../components/Meme/Image/Preset";
+import ButtonUpload from "../components/Meme/Image/ButtonUpload";
 import GenerateImage from "../components/Meme/GenerateImage";
 import { MemeContext } from "../context/MemeContext";
 import { RxText } from "react-icons/rx";
@@ -17,8 +17,8 @@ const Meme = () => {
 
   const StyledButtonContainer = styled.section`
     display: flex;
-    margin-bottom: 40px;
-    gap: 20px;
+    margin-bottom: 0px;
+    gap: 10px;
   `;
 
   const StyledButton = styled.button`
@@ -26,6 +26,7 @@ const Meme = () => {
     min-width: 150px;
     align-items: center;
     gap: 10px;
+    padding: 12px;
     background: #f1f1f1;
     border: 1px solid #ddd;
     position: relative;
@@ -51,8 +52,8 @@ const Meme = () => {
         data-aos-delay="200"
         data-aos-duration="500"
       >
-        <UploadImage />
-        <TextWrapper className={meme.state.imageSelected ? "active" : ""}>
+        <Image />
+        <Wrapper className={meme.state.imageSelected ? "active" : ""}>
           <StyledButtonContainer>
             <StyledButton onClick={() => setTab("text")}>
               {" "}
@@ -68,8 +69,8 @@ const Meme = () => {
               Preset
             </StyledButton>
           </StyledButtonContainer>
-          {tab === "text" ? <TextImage /> : <Preset />}
-        </TextWrapper>
+          {tab === "text" ? <Editor /> : <Preset />}
+        </Wrapper>
       </MainContent>
 
       <GenerateImage />

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { MemeContext } from "../../../context/MemeContext";
 import ImageCaption from "./ImageCaption";
 import ActiveImage from "./ActiveImage";

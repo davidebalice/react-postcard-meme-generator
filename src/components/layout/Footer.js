@@ -5,7 +5,7 @@ import bg from "../../assets/images/bg2.jpg";
 import logo from "../../assets/images/logoWhite.png";
 import github from "../../assets/images/github2_white.png";
 
-const StyledHeader = styled.header`
+const StyledFooter = styled.header`
   width: 100%;
   background-image: url("${bg}");
   background-size: 100%;
@@ -33,31 +33,15 @@ const StyledNavlink = styled(NavLink)`
   color: #fff;
 `;
 
-const Header = () => {
+const Footer = () => {
   return (
-    <StyledHeader id="header">
+    <StyledFooter id="footer">
       <NavLink
         to="/"
         className="logo d-flex align-items-center me-auto me-xl-0"
       >
         <StyledLogo src={logo} />
       </NavLink>
-
-      <nav id="navmenu">
-        <StyledUl>
-          <li>
-            <StyledNavlink to="/">Home</StyledNavlink>
-          </li>
-          <li>
-            <StyledNavlink to="/meme">Meme</StyledNavlink>
-          </li>
-          <li>
-            <StyledNavlink to="/postcard">Postcart</StyledNavlink>
-          </li>
-        </StyledUl>
-
-        <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
 
       <a
         href="https://github.com/davidebalice/react-postcard-meme-generator"
@@ -66,8 +50,8 @@ const Header = () => {
       >
         <StyledLogo src={github} />
       </a>
-    </StyledHeader>
+    </StyledFooter>
   );
 };
 
-export default Header;
+export default Footer;

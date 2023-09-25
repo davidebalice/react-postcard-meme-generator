@@ -13,7 +13,6 @@ const UpdateImage = () => {
   const meme = useContext(MemeContext);
 
   useEffect(() => {
-    
     const firstInput = document.getElementById("top1");
     if(firstInput){
       firstInput.focus();
