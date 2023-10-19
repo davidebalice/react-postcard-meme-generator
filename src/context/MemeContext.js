@@ -113,6 +113,22 @@ const StateProvider = ({ children }) => {
             [action.key]: action.payload,
           },
         };
+      case "UPDATE_BORDER":
+        return {
+          ...state,
+          border: {
+            ...state.border,
+            [action.key]: action.payload,
+          },
+        };
+      case "UPDATE_BORDER_COLOR":
+        return {
+          ...state,
+          borderColor: {
+            ...state.borderColor,
+            [action.key]: action.payload,
+          },
+        };
       case "TEXT_OUTSIDE":
         return {
           ...state,

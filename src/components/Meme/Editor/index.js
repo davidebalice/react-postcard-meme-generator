@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { MemeContext } from "../../../context/MemeContext";
-import Legenda from "./Legenda";
 import Title from "../../global/Title";
 import WrapInput from "../../global/form/WrapInput";
 import WrapSelect from "../../global/form/WrapSelect";
@@ -32,6 +31,22 @@ const Editor = () => {
     meme.dispatch({
       type: "UPDATE_COLOR",
       key: `color${numberKey}`,
+      payload: e.target.value,
+    });
+  };
+
+  const handleBorder = (e, numberKey) => {
+    meme.dispatch({
+      type: "UPDATE_BORDER",
+      key: `border${numberKey}`,
+      payload: e.target.value,
+    });
+  };
+
+  const handleBorderColor = (e, numberKey) => {
+    meme.dispatch({
+      type: "UPDATE_BORDER_COLOR",
+      key: `borderColor${numberKey}`,
       payload: e.target.value,
     });
   };
@@ -147,8 +162,8 @@ const Editor = () => {
         <div className={textOutside ? "inactive textCol" : "textCol"}>
           <Label>Border</Label>
           <Select
-            onChange={(e) => handleColor(e, numberKey)}
-            value={meme.state.color[`color${numberKey}`]}
+            onChange={(e) => handleBorder(e, numberKey)}
+            value={meme.state.border[`border${numberKey}`]}
           >
             <option value={0}>0</option>
             <option value={1}>1</option>
@@ -161,9 +176,9 @@ const Editor = () => {
         <div className={textOutside ? "inactive textCol" : "textCol"}>
           <Label>Border color</Label>
           <Color
-            onChange={(e) => handleColor(e, numberKey)}
+            onChange={(e) => handleBorderColor(e, numberKey)}
             type="color"
-            value={meme.state.color[`color${numberKey}`]}
+            value={meme.state.borderColor[`borderColor${numberKey}`]}
           />
         </div>
       </WrapInput>
@@ -209,17 +224,6 @@ const Editor = () => {
 
       {renderTextInputs(selectedText)}
 
-      <WrapInput>
-        <Switch
-          primary={true}
-          label="Text outside the image"
-          checked={textOutside}
-          disabled={!imageSelected}
-          onSwitch={handleTextOutside}
-        />
-      </WrapInput>
-
-      <Legenda>* Both of the above texts are optional.</Legenda>
     </section>
   );
 };

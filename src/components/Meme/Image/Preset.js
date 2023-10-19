@@ -4,6 +4,7 @@ import ImageCaption from "./ImageCaption";
 import ActiveImage from "./ActiveImage";
 import NoImage from "./NoImage";
 import presetData from "../preset.json";
+import styled, { css } from "styled-components";
 import baseMeme1 from "../../../assets/images/baseMeme1.jpg";
 import baseMeme2 from "../../../assets/images/baseMeme2.jpg";
 
@@ -21,18 +22,43 @@ const Preset = () => {
     const selectedPreset = presetData.find((preset) => preset.id === id);
 
     if (selectedPreset) {
-      meme.dispatch({ type: "UPDATE_TEXT1", payload: selectedPreset.text1 });
-      meme.dispatch({ type: "UPDATE_TEXT2", payload: selectedPreset.text2 });
-      meme.dispatch({ type: "UPDATE_TEXT3", payload: selectedPreset.text3 });
-      meme.dispatch({ type: "UPDATE_TOP1", payload: selectedPreset.top1 });
-      meme.dispatch({ type: "UPDATE_TOP2", payload: selectedPreset.top2 });
-      meme.dispatch({ type: "UPDATE_TOP3", payload: selectedPreset.top3 });
-      meme.dispatch({ type: "UPDATE_SIZE1", payload: selectedPreset.size1 });
-      meme.dispatch({ type: "UPDATE_SIZE2", payload: selectedPreset.size2 });
-      meme.dispatch({ type: "UPDATE_SIZE3", payload: selectedPreset.size3 });
-      meme.dispatch({ type: "UPDATE_LEFT1", payload: selectedPreset.left1 });
-      meme.dispatch({ type: "UPDATE_LEFT2", payload: selectedPreset.left2 });
-      meme.dispatch({ type: "UPDATE_LEFT3", payload: selectedPreset.left3 });
+      for (let i = 1; i <= 6; i++) {
+        let textKey = `text${i}`;
+        if (selectedPreset[textKey]) {
+          meme.dispatch({
+            type: "UPDATE_TEXT",
+            key: textKey,
+            payload: selectedPreset[textKey],
+          });
+        }
+
+        let topKey = `top${i}`;
+        if (selectedPreset[topKey]) {
+          meme.dispatch({
+            type: "UPDATE_TOP",
+            key: topKey,
+            payload: selectedPreset[topKey],
+          });
+        }
+
+        let leftKey = `left${i}`;
+        if (selectedPreset[leftKey]) {
+          meme.dispatch({
+            type: "UPDATE_LEFT",
+            key: leftKey,
+            payload: selectedPreset[leftKey],
+          });
+        }
+
+        let sizeKey = `size${i}`;
+        if (selectedPreset[sizeKey]) {
+          meme.dispatch({
+            type: "UPDATE_SIZE",
+            key: sizeKey,
+            payload: selectedPreset[sizeKey],
+          });
+        }
+      }
     }
   };
 
@@ -44,22 +70,32 @@ const Preset = () => {
     label = <NoImage>Upload an image from your computer</NoImage>;
   }
 
+  const PresetContainer = styled.div`
+    display: flex;
+    gap: 10px;
+    padding-top: 10px;
+  `;
+
+  const PresetImg = styled.img`
+    width: 110px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  `;
+
   return (
     <>
-      <div>
-        <img
+      <PresetContainer>
+        <PresetImg
           src={baseMeme1}
-          style={{ width: "70px" }}
           onClick={() => setPreset(baseMeme1, 1)}
           alt="base meme 1"
         />
-        <img
+        <PresetImg
           src={baseMeme2}
-          style={{ width: "70px" }}
           onClick={() => setPreset(baseMeme2, 2)}
           alt="base meme 2"
         />
-      </div>
+      </PresetContainer>
     </>
   );
 };

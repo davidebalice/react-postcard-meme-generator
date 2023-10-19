@@ -20,8 +20,8 @@ const Text = styled.pre`
   color: ${(props) => props.color};
   font-weight: ${({ theme }) => theme.typography.bold};
   font-size: ${(props) => props.fsize}em;
-  text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff,
-    -1px -1px 0 #fff;
+  -webkit-text-stroke-width: ${(props) => props.border}px;
+  -webkit-text-stroke-color: ${(props) => props.borderColor};
 
   ${(props) =>
     !props.outside &&
@@ -62,6 +62,8 @@ const ActiveImage = () => {
               leftPlace={meme.state.left[`left${index + 1}`]}
               color={meme.state.color[`color${index + 1}`]}
               fsize={meme.state.size[`size${index + 1}`]}
+              borderColor={meme.state.borderColor[`borderColor${index + 1}`]}
+              border={meme.state.border[`border${index + 1}`]}
               outside={meme.state.textOutside}
             >
               {meme.state.text[textField]}
