@@ -1,15 +1,18 @@
 import React, { useContext, useState } from "react";
 import MainContent from "../components/layout/MainContent";
-import Image from "../components/Meme/Image";
+import MameImage from "../components/Meme/Image";
 import Editor from "../components/Meme/Editor";
 import Wrapper from "../components/Meme/Editor/Wrapper";
 import Preset from "../components/Meme/Image/Preset";
 import ButtonUpload from "../components/Meme/Image/ButtonUpload";
-import GenerateImage from "../components/Meme/GenerateImage";
+import MemeGenerated from "../components/Meme/GenerateImage/MemeGenerated";
+import {GenerateImage} from "../components/Meme/GenerateImage";
+import {GenerateButton} from "../components/Meme/GenerateImage/GenerateButton";
 import { MemeContext } from "../context/MemeContext";
 import { RxText } from "react-icons/rx";
 import { BiImage } from "react-icons/bi";
 import styled from "styled-components";
+import { toPng } from "html-to-image";
 
 const Meme = () => {
   const meme = useContext(MemeContext);
@@ -26,7 +29,9 @@ const Meme = () => {
     min-width: 150px;
     align-items: center;
     gap: 10px;
+    cursor:pointer;
     padding: 12px;
+    font-size:13px;
     background: #f1f1f1;
     border: 1px solid #ddd;
     position: relative;
@@ -45,19 +50,48 @@ const Meme = () => {
     meme.dispatch({ type: "IMAGE_SELECTED", payload: newImage });
   };
 
+  const [image, setImage] = useState(null);
+
+  const generateMeme = () => {
+    toPng(document.getElementById("active-image"))
+      .then(function (dataUrl) {
+        var img = new Image();
+        img.src = dataUrl;
+        img.crossOrigin = "anonymous";
+        setImage(img.src);
+      })
+      .catch(function (error) {
+        console.error("We have a problem:", error);
+      });
+  };
+
+  const resetMeme = () => {
+    meme.dispatch({ type: "RESET_MEME" });
+  };
+
+  const closeMeme = () => {
+    setImage(null);
+  };
+
+  let memeImage;
+  if (image) {
+    memeImage = <MemeGenerated path={image} close={closeMeme} />;
+  }
+
   return (
     <>
+    {memeImage}
       <MainContent
         data-aos="fade-up"
         data-aos-delay="200"
         data-aos-duration="500"
       >
-        <Image />
+        <MameImage />
         <Wrapper className={meme.state.imageSelected ? "active" : ""}>
           <StyledButtonContainer>
             <StyledButton onClick={() => setTab("text")}>
               {" "}
-              <RxText /> Text
+              <RxText /> Texts editor
             </StyledButton>
             <StyledButton onClick={() => setTab("preset")}>
               {" "}
@@ -65,15 +99,17 @@ const Meme = () => {
               Preset
             </StyledButton>
             <StyledButton>
-              <ButtonUpload onChange={handleLocalImage} /> <BiImage />
-              Preset
+              <ButtonUpload onChange={handleLocalImage} /> 
+              <BiImage />
+              Upload your photo
             </StyledButton>
+            <GenerateButton generateMeme={generateMeme}/>
           </StyledButtonContainer>
           {tab === "text" ? <Editor /> : <Preset />}
         </Wrapper>
       </MainContent>
 
-      <GenerateImage />
+      <GenerateImage generateMeme={generateMeme} resetMeme={resetMeme}/>
     </>
   );
 };

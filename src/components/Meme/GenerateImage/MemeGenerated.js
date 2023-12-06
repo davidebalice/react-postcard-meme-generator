@@ -9,6 +9,7 @@ const Wrapper = styled.section`
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.8);
+    z-index:100
 `;
 
 const InnerContainer = styled.div`
@@ -41,7 +42,7 @@ const Close = styled.div`
     cursor: pointer;
 `;
 
-export const Meme = ({ path, close }) => {
+export const MemeGenerated = ({ path, close }) => {
     return (
         <Wrapper onClick={close}>
             <InnerContainer>
@@ -57,4 +58,4 @@ export const Meme = ({ path, close }) => {
     );
 };
 
-export default Meme;
+export default MemeGenerated;

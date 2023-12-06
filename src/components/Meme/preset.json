@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "text1": "Lorem ipsum dolor sit amet",
+    "text1": "Lorem ipsum dolor sit amet 111",
     "top1": 18,
     "left1": 27,
     "size1": 0.9,
@@ -21,7 +21,7 @@
   },
   {
     "id": 2,
-    "text1": "Lorem ipsum dolor sit amet",
+    "text1": "Lorem ipsum dolor sit amet 222",
     "top1": 5,
     "left1": 2,
     "size1": 1.4,

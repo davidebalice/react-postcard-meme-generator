@@ -11,6 +11,7 @@ const ButtonUpload = styled.input.attrs({
   width:100%;
   height:100%;
   z-index: 100;
+  cursor:pointer;
   opacity: 0;
 `;
 
