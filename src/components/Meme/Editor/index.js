@@ -7,7 +7,6 @@ import Label from "../../global/form/Label";
 import Color from "../../global/form/Color";
 import Textarea from "../../global/form/Textarea";
 import Range from "../../global/form/Range";
-import Switch from "../../global/form/Switch";
 import Select from "../../global/form/Select";
 
 const Editor = () => {
@@ -83,10 +82,6 @@ const Editor = () => {
 
   const handleTextSize = (e, pos) => {
     meme.dispatch({ type: "UPDATE_SIZE", key: pos, payload: e.target.value });
-  };
-
-  const handleTextOutside = (e) => {
-    meme.dispatch({ type: "TEXT_OUTSIDE" });
   };
 
   const renderTextInputs = (numberKey) => (
@@ -223,7 +218,6 @@ const Editor = () => {
       </WrapSelect>
 
       {renderTextInputs(selectedText)}
-
     </section>
   );
 };

@@ -1,19 +1,15 @@
 import React, { useContext } from "react";
 import { MemeContext } from "../../../context/MemeContext";
-import ImageCaption from "./ImageCaption";
-import ActiveImage from "./ActiveImage";
-import NoImage from "./NoImage";
-import presetData from "../preset.json";
-import styled, { css } from "styled-components";
-import baseMeme1 from "../../../assets/images/baseMeme1.jpg";
-import baseMeme2 from "../../../assets/images/baseMeme2.jpg";
+import presetData from "../preset";
+import styled from "styled-components";
+import preset from "../preset";
 
 const Preset = () => {
   const meme = useContext(MemeContext);
 
   const setPreset = (img, id) => {
     const newImage = {
-      name: "dsfsdf",
+      name: "",
       size: 2323,
       path: img,
     };
@@ -58,43 +54,76 @@ const Preset = () => {
             payload: selectedPreset[sizeKey],
           });
         }
+
+        let colorKey = `color${i}`;
+        if (selectedPreset[colorKey]) {
+          meme.dispatch({
+            type: "UPDATE_COLOR",
+            key: colorKey,
+            payload: selectedPreset[colorKey],
+          });
+        }
+
+        let borderKey = `border${i}`;
+        if (selectedPreset[borderKey]) {
+          meme.dispatch({
+            type: "UPDATE_BORDER",
+            key: borderKey,
+            payload: selectedPreset[borderKey],
+          });
+        }
+
+        let borderColorKey = `borderColor${i}`;
+        if (selectedPreset[borderColorKey]) {
+          meme.dispatch({
+            type: "UPDATE_BORDER_COLOR",
+            key: borderColorKey,
+            payload: selectedPreset[borderColorKey],
+          });
+        }
+
+        let useTextKey = `useText`;
+        if (selectedPreset[useTextKey]) {
+          meme.dispatch({
+            type: "USE_TEXT",
+            key: useTextKey,
+            payload: selectedPreset[useTextKey],
+          });
+        }
       }
     }
   };
 
-  let label, caption;
-  if (meme.state.imageSelected) {
-    label = <ActiveImage />;
-    caption = <ImageCaption />;
-  } else {
-    label = <NoImage>Upload an image from your computer</NoImage>;
-  }
-
   const PresetContainer = styled.div`
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
     padding-top: 10px;
   `;
 
   const PresetImg = styled.img`
-    width: 110px;
+    width: 121px;
     border-radius: 6px;
     border: 1px solid #ccc;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+    &:hover {
+      filter: brightness(80%);
+    }
   `;
 
   return (
     <>
       <PresetContainer>
-        <PresetImg
-          src={baseMeme1}
-          onClick={() => setPreset(baseMeme1, 1)}
-          alt="base meme 1"
-        />
-        <PresetImg
-          src={baseMeme2}
-          onClick={() => setPreset(baseMeme2, 2)}
-          alt="base meme 2"
-        />
+        {preset &&
+          preset.map((preset) => (
+            <PresetImg
+              key={preset.id}
+              src={preset.src}
+              onClick={() => setPreset(preset.src, preset.id)}
+              alt={`preset ${preset.id}`}
+            />
+          ))}
       </PresetContainer>
     </>
   );

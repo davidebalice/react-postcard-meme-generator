@@ -1,11 +1,8 @@
-import React, { useState, useContext } from "react";
-import { MemeContext } from "../../../context/MemeContext";
+import React from "react";
 import styled from "styled-components";
 import { BiImage } from "react-icons/bi";
 
 export const GenerateButton = ({generateMeme}) => {
-  const meme = useContext(MemeContext);
-
   const StyledButton = styled.button`
   display: flex;
   min-width: 150px;

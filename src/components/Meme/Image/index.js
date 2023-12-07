@@ -7,7 +7,6 @@ import ImageCaption from "./ImageCaption";
 import ActiveImage from "./ActiveImage";
 import NoImage from "./NoImage";
 import baseMeme1 from "../../../assets/images/baseMeme1.jpg";
-import baseMeme2 from "../../../assets/images/baseMeme2.jpg";
 
 const UpdateImage = () => {
   const meme = useContext(MemeContext);
@@ -21,8 +20,8 @@ const UpdateImage = () => {
 
     if (meme.state.imageSelected === null) {
       const newImage = {
-        name: "gggg",
-        size: 1234,
+        name: "",
+        size: 100,
         path: baseMeme1,
       };
       meme.dispatch({ type: "IMAGE_SELECTED", payload: newImage });

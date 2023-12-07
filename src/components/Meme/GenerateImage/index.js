@@ -3,7 +3,6 @@ import { MemeContext } from "../../../context/MemeContext";
 import Button from "../../global/Button";
 import Wrapper from "./Wrapper";
 
-
 export const GenerateImage = ({generateMeme, resetMeme}) => {
   const meme = useContext(MemeContext);
 
