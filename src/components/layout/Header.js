@@ -49,10 +49,7 @@ const Header = () => {
             <StyledNavlink to="/">Home</StyledNavlink>
           </li>
           <li>
-            <StyledNavlink to="/meme">Meme</StyledNavlink>
-          </li>
-          <li>
-            <StyledNavlink to="/postcard">Postcart</StyledNavlink>
+            <StyledNavlink to="/editor">Editor</StyledNavlink>
           </li>
         </StyledUl>
 

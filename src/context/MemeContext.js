@@ -65,7 +65,7 @@ const initialState = {
 const MemeContext = createContext(initialState);
 const { Provider } = MemeContext;
 
-const StateProvider = ({ children }) => {
+const MemeProvider = ({ children }) => {
   const [state, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case "USE_TEXT":
@@ -148,4 +148,4 @@ const StateProvider = ({ children }) => {
   return <Provider value={{ state, dispatch }}>{children}</Provider>;
 };
 
-export { MemeContext, StateProvider };
+export { MemeContext, MemeProvider };

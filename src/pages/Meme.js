@@ -11,6 +11,7 @@ import {GenerateButton} from "../components/Meme/GenerateImage/GenerateButton";
 import { MemeContext } from "../context/MemeContext";
 import { RxText } from "react-icons/rx";
 import { BiImage } from "react-icons/bi";
+import { MdCloudUpload } from "react-icons/md";
 import styled from "styled-components";
 import { toPng } from "html-to-image";
 
@@ -31,7 +32,7 @@ const Meme = () => {
     gap: 10px;
     cursor:pointer;
     padding: 12px;
-    font-size:13px;
+    font-size:14px;
     background: #f1f1f1;
     border: 1px solid #ddd;
     position: relative;
@@ -91,17 +92,17 @@ const Meme = () => {
           <StyledButtonContainer>
             <StyledButton onClick={() => setTab("text")}>
               {" "}
-              <RxText /> Texts editor
+              <RxText size={18}/> Editor
             </StyledButton>
             <StyledButton onClick={() => setTab("preset")}>
               {" "}
-              <BiImage />
+              <BiImage size={19}/>
               Preset
             </StyledButton>
             <StyledButton>
               <ButtonUpload onChange={handleLocalImage} /> 
-              <BiImage />
-              Upload your photo
+              <MdCloudUpload size={18} />
+              Upload photo
             </StyledButton>
             <GenerateButton generateMeme={generateMeme}/>
           </StyledButtonContainer>

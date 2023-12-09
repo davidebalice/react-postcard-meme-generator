@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BiImage } from "react-icons/bi";
+import { FaGear } from "react-icons/fa6";
 
 export const GenerateButton = ({generateMeme}) => {
   const StyledButton = styled.button`
@@ -10,7 +10,7 @@ export const GenerateButton = ({generateMeme}) => {
   gap: 10px;
   cursor:pointer;
   padding: 12px;
-  font-size:13px;
+  font-size:14px;
   background: #f1f1f1;
   border: 1px solid #ddd;
   position: relative;
@@ -21,8 +21,8 @@ export const GenerateButton = ({generateMeme}) => {
 
   return (
     <StyledButton onClick={generateMeme}>
-      <BiImage />
-      Generate MEME
+      <FaGear size={15} />
+      Generate Image
     </StyledButton>
   );
 };

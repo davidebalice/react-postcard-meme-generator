@@ -5,7 +5,7 @@ import baseMeme4 from "../../assets/images/baseMeme4.jpg";
 import baseMeme5 from "../../assets/images/baseMeme5.jpg";
 import baseMeme6 from "../../assets/images/baseMeme6.jpg";
 
-const preset = [
+const presetMeme = [
   {
     id: 1,
     src: baseMeme1,
@@ -101,7 +101,7 @@ const preset = [
     useText: 2,
     text1: "HTML",
     top1: 41,
-    left1: 2,
+    left1: 1.9,
     size1: 2,
     color1: "#ffffff",
     border1: 0,
@@ -109,7 +109,7 @@ const preset = [
 
     text2: "CSS",
     top2: 93,
-    left2: 1.8,
+    left2: 1.6,
     size2: 2,
     color2: "#ffffff",
     border2: 0,
@@ -174,4 +174,4 @@ const preset = [
     imageSelected: null,
   },
 ];
-export default preset;
+export default presetMeme;

@@ -14,7 +14,7 @@ export const GenerateImage = ({generateMeme, resetMeme}) => {
         handleClick={generateMeme}
         isDisabled={!meme.state.imageSelected}
       >
-        Generate MEME
+        Generate IMAGE
       </Button>
 
       <Button
@@ -22,7 +22,7 @@ export const GenerateImage = ({generateMeme, resetMeme}) => {
         handleClick={resetMeme}
         isDisabled={!meme.state.imageSelected}
       >
-        Reset MEME settings
+        Reset settings
       </Button>
     </Wrapper>
   );

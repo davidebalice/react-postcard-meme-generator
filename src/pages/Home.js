@@ -12,7 +12,8 @@ import postcardIcon from "../assets/images/postcard.png";
 
 const StyledNavLink = styled(NavLink)`
   margin-bottom: 1rem;
-  width: 40%;
+  width: 70%;
+  max-width:900px;
   text-decoration: none;
 
   @media (max-width: 768px) {
@@ -36,6 +37,15 @@ const StyledIcon = styled.img`
   top: 50%;
   transform: translate(-50%, -50%);
   opacity: 0.9;
+`;
+
+const StyledWrapperImg = styled.div`
+  display:flex;
+  padding:0px 10px;
+  gap:12px;
+  @media (max-width: 768px) {
+    flex-direction:column;
+  }
 `;
 
 const StyledContainerImg = styled.div`
@@ -84,39 +94,27 @@ const Home = () => {
       <Presentation />
       <Container>
         <CardContainer>
-          <StyledNavLink to="/meme">
+          <StyledNavLink to="/editor">
             <Card
               data-aos="flip-left"
               data-aos-delay="0"
               data-aos-duration="500"
             >
-              <StyledContainerImg>
-                <StyledIcon src={memeIcon} />
-                <StyledImg src={meme} />
-              </StyledContainerImg>
+              <StyledWrapperImg>
+                <StyledContainerImg>
+                  <StyledIcon src={memeIcon} />
+                  <StyledImg src={meme} />
+                </StyledContainerImg>
+                <StyledContainerImg>
+                  <StyledIcon src={postcardIcon} />
+                  <StyledImg src={postcard} />
+                </StyledContainerImg>
+              </StyledWrapperImg>
               <StyledText>
                 Upload a photo or select one of the presets, manage the
-                position, size and color of texts, generate your meme
+                position, size and color of texts, generate your meme or postcard
               </StyledText>
-              <StyledTitle>Meme generator</StyledTitle>
-            </Card>
-          </StyledNavLink>
-          <StyledNavLink to="/postcard">
-            <Card
-              data-aos="flip-left"
-              data-aos-delay="300"
-              data-aos-duration="500"
-            >
-              <StyledContainerImg>
-                <StyledIcon src={postcardIcon} />
-                <StyledImg src={postcard} />
-              </StyledContainerImg>
-              <StyledText>
-                Upload your photo or choose one of the presets, manage the
-                position, size and color of texts. both on the front and on
-                the retro, generate your postcard
-              </StyledText>
-              <StyledTitle>Postcard generator</StyledTitle>
+              <StyledTitle>Editor</StyledTitle>
             </Card>
           </StyledNavLink>
         </CardContainer>

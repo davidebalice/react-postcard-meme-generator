@@ -1,21 +1,38 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect} from "react";
 import { MemeContext } from "../../../context/MemeContext";
-import presetData from "../preset";
+import presetMeme from "../presetMeme";
+import presetPostcardFront from "../presetPostcardFront";
+import presetPostcardRetro from "../presetPostcardRetro";
 import styled from "styled-components";
-import preset from "../preset";
+import { FaRegFaceLaughSquint } from "react-icons/fa6";
+import { BsCardImage, BsPostcard } from "react-icons/bs";
 
 const Preset = () => {
   const meme = useContext(MemeContext);
+  const [presetData, setPresetData] = useState(presetMeme);
+  const [category, setCategory] = useState('meme');
+
+  useEffect(() => {
+    if(category==="meme"){
+      setPresetData(presetMeme);
+    }
+    else if(category==="postcardFront"){
+      setPresetData(presetPostcardFront);
+    }
+    else if(category==="postcardRetro"){
+      setPresetData(presetPostcardRetro);
+    }
+  },[category]);
 
   const setPreset = (img, id) => {
     const newImage = {
       name: "",
-      size: 2323,
+      size: 1000,
       path: img,
     };
     meme.dispatch({ type: "IMAGE_SELECTED", payload: newImage });
 
-    const selectedPreset = presetData.find((preset) => preset.id === id);
+    const selectedPreset = presetData && presetData.find((preset) => preset.id === id);
 
     if (selectedPreset) {
       for (let i = 1; i <= 6; i++) {
@@ -94,15 +111,26 @@ const Preset = () => {
     }
   };
 
+  const PresetButtonContainer = styled.div`
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 18px;
+    background:#fff;
+  `;
+
   const PresetContainer = styled.div`
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    padding-top: 10px;
+    padding: 16px;
+    padding-top:0;
+    background:#fff;
   `;
 
   const PresetImg = styled.img`
     width: 121px;
+    height: 110px;
     border-radius: 6px;
     border: 1px solid #ccc;
     cursor: pointer;
@@ -112,11 +140,40 @@ const Preset = () => {
     }
   `;
 
+  const PresetCategoryButton = styled.div`
+    display: flex;
+    gap: 10px;
+    font-size:13px;
+    background:#f1f1f1;
+    flex-wrap: nowrap;
+    padding: 8px 14px;
+    border-radius:16px;
+    align-items:center;
+    cursor:pointer;
+    &:hover {
+      background:#d1d1d1;
+    }
+  `;
+
   return (
     <>
+      <PresetButtonContainer>
+        <PresetCategoryButton onClick={()=>setCategory('meme')}>
+          <FaRegFaceLaughSquint/>
+          Meme
+        </PresetCategoryButton>
+        <PresetCategoryButton onClick={()=>setCategory('postcardFront')}>
+          <BsCardImage/>
+          Postcard - front
+        </PresetCategoryButton>
+        <PresetCategoryButton onClick={()=>setCategory('postcardRetro')}>
+          <BsPostcard/>
+          Postcard - Retro
+        </PresetCategoryButton>
+      </PresetButtonContainer>
       <PresetContainer>
-        {preset &&
-          preset.map((preset) => (
+        {presetData &&
+          presetData.map((preset) => (
             <PresetImg
               key={preset.id}
               src={preset.src}

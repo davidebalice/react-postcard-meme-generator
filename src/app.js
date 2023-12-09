@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { StateProvider } from "./context/MemeContext";
+import { MemeProvider } from "./context/MemeContext";
 import AppWrapper from "./components/layout/AppWrapper";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
-import { BrowserRouter as Router, Link, NavLink } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import SiteRoutes from "./routes/SiteRoutes";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -18,9 +18,9 @@ const App = () => {
     <Router>
       <Header />
       <AppWrapper>
-        <StateProvider>
+        <MemeProvider>
           <SiteRoutes />
-        </StateProvider>
+        </MemeProvider>
       </AppWrapper>
       <Footer />
     </Router>
