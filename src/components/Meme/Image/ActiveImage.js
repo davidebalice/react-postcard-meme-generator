@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { MemeContext } from "../../../context/MemeContext";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const Wrapper = styled.div.attrs({
   id: "active-image",
@@ -22,14 +22,9 @@ const Text = styled.pre`
   font-size: ${(props) => props.fsize}em;
   -webkit-text-stroke-width: ${(props) => props.border}px;
   -webkit-text-stroke-color: ${(props) => props.borderColor};
-
-  ${(props) =>
-    !props.outside &&
-    props.pos === "top" &&
-    css`
-      top: ${(props) => props.topPlace}%;
-      left: ${(props) => props.leftPlace}%;
-    `}
+  text-align: ${(props) => props.alignText};
+  top: ${(props) => props.topPlace}%;
+  left: ${(props) => props.leftPlace}%;
 `;
 
 const Image = styled.img.attrs(({ path, altimg }) => ({
@@ -57,14 +52,13 @@ const ActiveImage = () => {
           {meme.state.text[textField] && (
             <Text
               key={index}
-              pos="top"
               topPlace={meme.state.top[`top${index + 1}`]}
               leftPlace={meme.state.left[`left${index + 1}`]}
               color={meme.state.color[`color${index + 1}`]}
               fsize={meme.state.size[`size${index + 1}`]}
               borderColor={meme.state.borderColor[`borderColor${index + 1}`]}
               border={meme.state.border[`border${index + 1}`]}
-              outside={meme.state.textOutside}
+              alignText={meme.state.alignText[`alignText${index + 1}`]}
             >
               {meme.state.text[textField]}
             </Text>

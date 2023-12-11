@@ -58,6 +58,14 @@ const initialState = {
     borderColor5: "#ffffff",
     borderColor6: "#ffffff",
   },
+  alignText: {
+    alignText1: "center",
+    alignText2: "center",
+    alignText3: "center",
+    alignText4: "center",
+    alignText5: "center",
+    alignText6: "center",
+  },
   textOutside: false,
   imageSelected: null,
 };
@@ -129,10 +137,13 @@ const MemeProvider = ({ children }) => {
             [action.key]: action.payload,
           },
         };
-      case "TEXT_OUTSIDE":
+      case "UPDATE_ALIGN":
         return {
           ...state,
-          textOutside: !state.textOutside,
+          alignText: {
+            ...state.alignText,
+            [action.key]: action.payload,
+          },
         };
       case "IMAGE_SELECTED":
         return {

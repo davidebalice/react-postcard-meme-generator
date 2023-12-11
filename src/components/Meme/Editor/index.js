@@ -58,6 +58,14 @@ const Editor = () => {
     });
   };
 
+  const handleAlign = (e, numberKey) => {
+    meme.dispatch({
+      type: `UPDATE_ALIGN`,
+      key: `alignText${numberKey}`,
+      payload: e.target.value,
+    });
+  };
+
   const handleTextPos = (e, pos) => {
     if (
       pos === "top1" ||
@@ -100,7 +108,7 @@ const Editor = () => {
       </WrapInput>
 
       <WrapInput flex>
-        <div className={textOutside ? "inactive textCol" : "textCol"}>
+        <div className="textCol">
           <Label htmlFor={`top${numberKey}`}>
             Position top <span>[ {meme.state.top[`top${numberKey}`]} ]</span>
           </Label>
@@ -114,7 +122,7 @@ const Editor = () => {
           />
         </div>
 
-        <div className={textOutside ? "inactive textCol" : "textCol"}>
+        <div className="textCol">
           <Label htmlFor={`left${numberKey}`}>
             Position left <span>[ {meme.state.left[`left${numberKey}`]} ]</span>
           </Label>
@@ -128,7 +136,7 @@ const Editor = () => {
           />
         </div>
 
-        <div className={textOutside ? "inactive textCol" : "textCol"}>
+        <div className="textCol">
           <Label htmlFor={`size${numberKey}`}>
             Text size <span>[ {meme.state.size[`size${numberKey}`]} ]</span>
           </Label>
@@ -145,7 +153,7 @@ const Editor = () => {
       </WrapInput>
 
       <WrapInput flex>
-        <div className={textOutside ? "inactive textCol" : "textCol"}>
+        <div className="textCol">
           <Label>Text color</Label>
           <Color
             onChange={(e) => handleColor(e, numberKey)}
@@ -154,7 +162,7 @@ const Editor = () => {
           />
         </div>
 
-        <div className={textOutside ? "inactive textCol" : "textCol"}>
+        <div className="textCol">
           <Label>Border</Label>
           <Select
             onChange={(e) => handleBorder(e, numberKey)}
@@ -168,13 +176,27 @@ const Editor = () => {
           </Select>
         </div>
 
-        <div className={textOutside ? "inactive textCol" : "textCol"}>
+        <div className="textCol">
           <Label>Border color</Label>
           <Color
             onChange={(e) => handleBorderColor(e, numberKey)}
             type="color"
             value={meme.state.borderColor[`borderColor${numberKey}`]}
           />
+        </div>
+      </WrapInput>
+
+      <WrapInput flex>
+        <div className="textCol">
+        <Label>Text align</Label>
+          <Select
+            onChange={(e) => handleAlign(e, numberKey)}
+            value={meme.state.alignText[`alignText${numberKey}`]}
+          >
+            <option value="center">center</option>
+            <option value="left">left</option>
+            <option value="right">right</option>
+          </Select>
         </div>
       </WrapInput>
     </>
