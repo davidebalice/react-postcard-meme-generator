@@ -5,7 +5,7 @@ export default {
     gray: "#777",
     black: "#222",
     default: "#333",
-    primary: "#0773be",
+    primary: "#2d78bf",
     secondary: "#444",
     tertiary: "#555",
     quaternary: "#333",

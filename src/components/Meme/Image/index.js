@@ -54,7 +54,6 @@ const UpdateImage = () => {
           {label}
         </ImageLabel>
         <ImageInput onChange={handleLocalImage} />
-        {caption}
       </ImageWrapper>
     </>
   );

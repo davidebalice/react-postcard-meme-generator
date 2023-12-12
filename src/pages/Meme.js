@@ -6,8 +6,8 @@ import Wrapper from "../components/Meme/Editor/Wrapper";
 import Preset from "../components/Meme/Image/Preset";
 import ButtonUpload from "../components/Meme/Image/ButtonUpload";
 import MemeGenerated from "../components/Meme/GenerateImage/MemeGenerated";
-import {GenerateImage} from "../components/Meme/GenerateImage";
-import {GenerateButton} from "../components/Meme/GenerateImage/GenerateButton";
+import { GenerateImage } from "../components/Meme/GenerateImage";
+import { GenerateButton } from "../components/Meme/GenerateImage/GenerateButton";
 import { MemeContext } from "../context/MemeContext";
 import { RxText } from "react-icons/rx";
 import { BiImage } from "react-icons/bi";
@@ -30,9 +30,9 @@ const Meme = () => {
     min-width: 150px;
     align-items: center;
     gap: 10px;
-    cursor:pointer;
+    cursor: pointer;
     padding: 12px;
-    font-size:14px;
+    font-size: 14px;
     background: #f1f1f1;
     border: 1px solid #ddd;
     position: relative;
@@ -81,7 +81,8 @@ const Meme = () => {
 
   return (
     <>
-    {memeImage}
+      <GenerateImage generateMeme={generateMeme} resetMeme={resetMeme} />
+      {memeImage}
       <MainContent
         data-aos="fade-up"
         data-aos-delay="200"
@@ -92,25 +93,23 @@ const Meme = () => {
           <StyledButtonContainer>
             <StyledButton onClick={() => setTab("text")}>
               {" "}
-              <RxText size={18}/> Editor
+              <RxText size={18} /> Editor
             </StyledButton>
             <StyledButton onClick={() => setTab("preset")}>
               {" "}
-              <BiImage size={19}/>
+              <BiImage size={19} />
               Preset
             </StyledButton>
             <StyledButton>
-              <ButtonUpload onChange={handleLocalImage} /> 
+              <ButtonUpload onChange={handleLocalImage} />
               <MdCloudUpload size={18} />
               Upload photo
             </StyledButton>
-            <GenerateButton generateMeme={generateMeme}/>
+            <GenerateButton generateMeme={generateMeme} />
           </StyledButtonContainer>
           {tab === "text" ? <Editor /> : <Preset />}
         </Wrapper>
       </MainContent>
-
-      <GenerateImage generateMeme={generateMeme} resetMeme={resetMeme}/>
     </>
   );
 };

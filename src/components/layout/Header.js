@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Link, NavLink } from "react-router-dom";
-import styled, { css } from "styled-components";
+import React from "react";
+import { BrowserRouter as Router, NavLink } from "react-router-dom";
+import styled from "styled-components";
 import bg from "../../assets/images/bg2.jpg";
 import logo from "../../assets/images/logoWhite.png";
 import github from "../../assets/images/github2_white.png";
@@ -21,18 +21,6 @@ const StyledLogo = styled.img`
   max-width: 150px;
 `;
 
-const StyledUl = styled.ul`
-  display: flex;
-  list-style: none;
-  gap: 26px;
-  color: #fff;
-  text-decoration: none;
-`;
-
-const StyledNavlink = styled(NavLink)`
-  color: #fff;
-`;
-
 const Header = () => {
   return (
     <StyledHeader id="header">
@@ -42,19 +30,6 @@ const Header = () => {
       >
         <StyledLogo src={logo} />
       </NavLink>
-
-      <nav id="navmenu">
-        <StyledUl>
-          <li>
-            <StyledNavlink to="/">Home</StyledNavlink>
-          </li>
-          <li>
-            <StyledNavlink to="/editor">Editor</StyledNavlink>
-          </li>
-        </StyledUl>
-
-        <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
 
       <a
         href="https://github.com/davidebalice/react-postcard-meme-generator"

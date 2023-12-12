@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const AppWrapper = styled.div`
-    min-height:calc(100vh - 200px);
+    min-height:calc(100vh - 144px);
 
     @media all and (max-width: ${({ theme }) => theme.layout.smWidth}) {
         margin: 1rem 0;
